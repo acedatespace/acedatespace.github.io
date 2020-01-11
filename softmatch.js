@@ -143,13 +143,84 @@
   exports.FormSerializer = FormSerializer;
 
   return FormSerializer;
-}));
+})
+);
+
+var MAX_CUTIES = 10; // you can only select this many profiles
+var numSelected = 0;
+var BLANK_STR = ""
+
+function showContent(moreText) {
+	var submitBtn = document.getElementById("submit-form");
+	if (discordID.value === "noneSelected") {
+		<!-- Hide text -->
+		moreText.style.display = "none";
+		submitBtn.style.display = "none";
+	} else {
+		<!-- Display text -->
+		moreText.style.display = "inline";
+		submitBtn.style.display = "inline"; 
+	}
+}
+
+function updateProfiles(thisID){ // update profile count on change
+	var newCount = 0;
+	if(typeof candidates === 'undefined'){numSelected=0;return;} // candidates not defined
+	for(var i = 0; i < candidates.length; i++){
+		var ID = i+1;
+		var formElement = document.getElementById("form_field_" + ID);
+		if(formElement.value !== BLANK_STR) { // person selected
+			newCount++;
+		}
+	}
+	// change selected profile border
+	var thisProfile = document.getElementById("profile_"+thisID);
+	var thisField = document.getElementById("form_field_" + thisID);
+	if(thisField.value !== BLANK_STR) { // person selected
+		thisProfile.classList.add('selected');
+	} else {
+		thisProfile.classList.remove('selected');
+	}
+	console.log(thisProfile.style.border);
+	
+	// enforce max rule
+	if(newCount > MAX_CUTIES){
+		cutieWarn.style.display = "inline";
+		
+		// set changed field blank (the one the user is trying to change)
+		opts = thisField.options;
+		var optI = 0;
+		while (optI < opts.length && opts[optI].value !== BLANK_STR) {optI++;} // find blank option
+		if(optI < opts.length){ // failsafe
+			thisField.selectedIndex = optI;
+			newCount--;
+		}
+	} else{
+		cutieWarn.style.display = "none";
+	}
+	if(newCount != numSelected){
+		numSelected = newCount;
+		if(typeof cutieCount !== 'undefined'){
+			var ccText = numSelected + ' cutie';
+			if(numSelected!==1){ccText += 's';}
+			ccText += ' selected.';
+			cutieCount.innerHTML = ccText;
+		}
+	}
+	// dis-/enable submit button
+	var submitBtn = document.getElementById("submit-form");
+	if(discordID.value !== "noneSelected" && newCount > 0){ //enable
+		submitBtn.disabled = false;
+	} else {
+		submitBtn.disabled = true;
+	}
+}
 
 var $form = $('form#test-form'),
     url = 'https://script.google.com/macros/s/AKfycbyxfG2OyEBQ4z1OnF9YloyD8pb7T_xyJxKHdmQTb5O2oMBmqL4/exec'
 
 $('#submit-form').on('click', function(e) {
-alert("submission successful ;) we will process your results shortly");
+  alert("submission successful ;) we will process your results shortly");
   e.preventDefault();
   var jqxhr = $.ajax({
     url: url,
@@ -159,6 +230,8 @@ alert("submission successful ;) we will process your results shortly");
   }).success(
     // do something
   );
+  console.log("Submitted");
+  location.reload();
 })
 
 var candidates = [
@@ -1272,7 +1345,7 @@ var candidates = [
         "whatAreYouLookingForSelectAllThatApply": "Romance, QPR",
         "describeYourselfIn3Words": "Introvert, overwatch, memes"
     },
-{
+    {
         "timestamp": "2020-01-11T06:41:35.605Z",
         "discordId": "Luke#1509",
         "age": 25,
@@ -1282,12 +1355,53 @@ var candidates = [
         "romanticOrientationSelectAllThatApply": "homoromantic, panromantic",
         "whatAreYouLookingForSelectAllThatApply": "Romance, QPR, Friendship",
         "describeYourselfIn3Words": "Dorky, Talkative, Coffee! "
+    },
+    {
+        "timestamp": "2020-01-11T07:05:48.582Z",
+        "discordId": "Bookofcircus#1289",
+        "age": 25,
+        "pronouns": "She/they",
+        "country": "United States",
+        "regionOrNearestCity": "Colorado",
+        "romanticOrientationSelectAllThatApply": "biromantic, androromantic",
+        "whatAreYouLookingForSelectAllThatApply": "Romance",
+        "describeYourselfIn3Words": "Weird, clever, crafty"
+    },
+    {
+        "timestamp": "2020-01-11T09:34:29.063Z",
+        "discordId": "Blox#0047",
+        "age": 26,
+        "pronouns": "Him/He",
+        "country": "United States",
+        "regionOrNearestCity": "Williamsburg, Virginia",
+        "romanticOrientationSelectAllThatApply": "homoromantic, biromantic, demiromantic, greyromantic, lith/akoi/apromantic",
+        "whatAreYouLookingForSelectAllThatApply": "Romance, QPR, Friendship",
+        "describeYourselfIn3Words": "Timid, Sarcastic, Low-key"
     }
 ]
 
+var alphaOrder=[]; // alphabetical order
+for (var i = 0; i < candidates.length; i++) { //initialize
+	alphaOrder[i]=i;
+}
+alphaOrder.sort( //sort order (case insensitive)
+	function(a,b){
+		var x = candidates[a].discordId.toLowerCase();
+		var y = candidates[b].discordId.toLowerCase();
+		if(x<y){return -1;} 
+		if(x>y){return 1;} 
+		return 0;
+	})
 
-
-for (var i = 0; i < candidates.length; i++) {
+// the profile selection part
+var profilePart = document.createElement('span');
+profilePart.id = 'profilePart';
+profilePart.style = 'display:none;';
+var matchQuestion = document.createElement('div');
+matchQuestion.innerHTML = '<h3>Who do you want to match with? Choose up to 10 profiles.</h3>When you&#39;re done choosing, please scroll to bottom to submit :)<br><br>';
+profilePart.append(matchQuestion);
+for (var ii = 0; ii < candidates.length; ii++) { // ii is index in alphaOrder 
+  var i = alphaOrder[ii]; // index in candidates
   var name = candidates[i].discordId;
   var age = candidates[i].age;
   var pronouns = candidates[i].pronouns;
@@ -1297,11 +1411,11 @@ for (var i = 0; i < candidates.length; i++) {
   var seeking = candidates[i].whatAreYouLookingForSelectAllThatApply;
   var words = candidates[i].describeYourselfIn3Words;
   var profile = document.createElement('div');
-  var ID = candidates.length - i;
+  var ID = i+1;
   profile.className = 'profile';
+  profile.id = "profile_"+ID;
   profile.innerHTML =
     '<div class="profile-content">' +
-    '<span class="id">#' + ID + '</span>' +
     '<span class="name"><b>Name: </b>' + name + '</span>' +
     '<span class="name"><b>Age: </b>' + age + '</span>' +
     '<span class="name"><b>Pronouns: </b>' + pronouns + '</span>' +
@@ -1309,11 +1423,28 @@ for (var i = 0; i < candidates.length; i++) {
     '<span class="name"><b>Orientation: </b>' + orientations + '</span>' +
     '<span class="name"><b>Looking for: </b>' + seeking + '</span>' +
     '<span class="name"><b>3 Words: </b>' + words + '</span>' +
-    '<br><div class="checkbox">I&#39;m interested <input type="checkbox" name="form_field_' + ID + '" value="' + name + '"></div>' +
-    '<div class="checkbox">I&#39;m <i>very</i> interested ;) <input type="checkbox" name="form_field_' + ID + '" value="*' + name + '"></div>'
+	'<span class="name"><b><div>Interested? <select name="form_field_' + ID + '" id="form_field_' + ID + '" '+
+	'onchange="updateProfiles(' + ID + ')">'+
+	'<option value="'+BLANK_STR+'"></option>'+
+	'<option value="' + name + '">I&#39;m interested</option>'+
+	'<option value="*' + name + '">I&#39;m <i>very</i> interested ;)</option></select></div></b></span>' +
     '</div>';
-  document.getElementById('test-form').prepend(profile);
+  profilePart.append(profile);
 }
+// display number selected
+var cutieCount = document.createElement('div'); 
+cutieCount.id = 'selectCount';
+cutieCount.style = 'background-color: #333;color: #fff;' +
+	'padding: 8px;position: fixed;bottom: 10px;left: 10%;';
+cutieCount.innerHTML = '0 cuties selected';
+profilePart.append(cutieCount);
+// display warning
+var cutieWarn = document.createElement('div'); 
+cutieWarn.style = 'background-color: #833;color: #fff;display:none;' + 
+	'padding: 8px;position: fixed;bottom: 10px;right: 10%;';
+cutieWarn.innerHTML = 'Sorry, you are limited to ' + MAX_CUTIES + ' cuties.';
+profilePart.append(cutieWarn);
+document.getElementById('test-form').prepend(profilePart);
 
 $(document).ready(function() {
     $('.profile').each(function () {
@@ -1327,37 +1458,31 @@ dropdown.className = 'dropdown';
 var buildHTML;
 var optionHTML;
 
-var candidateNames = []
-for (var i = 0; i < candidates.length; i++) {
-  candidateNames.push(candidates[i].discordId);
-}
-
-var alphaNames = candidateNames.sort();
-
-for (var i = 0; i < alphaNames.length; i++) {
-  var name = alphaNames[i];
+for (var ii = 0; ii < candidates.length; ii++) {
+  var i = alphaOrder[ii]; // index in candidates
+  var name = candidates[i].discordId;
   optionHTML +=
     '<option value="' + name + '">' + name + '</option>'
 }
 
-buildHTML = '<h3>Who are you? (If you don&#39;t select your name, you won&#39;t get results)</h3><br><select name="discordName" id="discordID"><option value="noneSelected">Please Select</option>' + optionHTML + '</select><br><br><br><h3>Who do you want to match with? Choose up to 10 profiles.</h3>When you&#39;re done choosing, please scroll to bottom to submit :)<br><br>'
+buildHTML = '<h3>Who are you?</h3><br>' + 
+	'<select name="discordName" id="discordID" onchange="showContent(profilePart)"><option value="noneSelected">Please Select</option>' + optionHTML + '</select><br><br><br>'
 
 dropdown.innerHTML = buildHTML;
 document.getElementById('test-form').prepend(dropdown);
 
 $('.profile').on('click', function() {
             var checkbox = $(this).find('*').filter(':input:visible:first');
-            checkbox.attr("checked", !checkbox.attr("checked"));    
-            $(this).toggleClass('selected');
+            checkbox.attr("checked", true);    
         });
 $(".profile input").on("click", function(e){
     e.stopPropagation();
-    $(this).parents(".profile").toggleClass('selected');
 });
 
+ /*
 var dropdownSelect = $("#discordID").children("option:selected").val();
 
 
- /* if (dropdownSelect == "noneSelected") {
-    alert("please select your username from the dropdown");
-  } */
+if (dropdownSelect == "noneSelected") {
+	alert("please select your username from the dropdown");
+} */

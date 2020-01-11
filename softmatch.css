@@ -21,6 +21,7 @@ body {
   font-family:roboto;
   margin-left: 5%;
   margin-right: 5%;
+  margin-bottom: 1.5cm;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -33,6 +34,11 @@ body {
   margin: 9px;
   /*cursor:url(http://www.javascriptkit.com/dhtmltutors/cursor-hand.gif), auto;*/
   cursor: pointer;
+}
+
+.selected {
+	border: 3px solid blue !important;
+	margin: 8px !important;
 }
 
 img {

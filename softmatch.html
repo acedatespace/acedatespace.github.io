@@ -1,20 +1,39 @@
-<head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<link rel="stylesheet" href="softmatch.css">
-<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-<meta charset="utf-8"> 
-</head>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="softmatch.css">
+		<link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet">
+		<meta charset="utf-8"> 
 
-<img src="http://acedatespace.github.io/sticker.png"></img><br>
-<h1>ace date space presents: softe matchmaking 😌</h1>
-<br><br>
+			<script>
+				function showContent(btnTextId,moreText) {
+				  var btnText = document.getElementById(btnTextId);
+				  
+				  if (moreText.style.display === "none") {
+					<!-- Display text -->
+					moreText.style.display = "inline";
+					btnText.innerHTML = "Show less";
+				  } else {
+					<!-- Hide text -->
+					moreText.style.display = "none";
+					btnText.innerHTML = "Show more";
+				  }
+				}
+			</script>
+	</head>
 
-<form id="test-form">
+	<body>
+		<img src="http://acedatespace.github.io/sticker.png"><br>
+		<h1>ace date space presents: softe matchmaking 😌</h1>
+		<br><br>
 
-  <div>
-    <button type="submit"id="submit-form">Submit</button>
-  </div>
+		<form id="test-form"><div class="dropdown">
 
-</form>
-
-<script src="softmatch.js"></script>
+		</form>
+		<div>
+			<button type="submit" id="submit-form" style="display: none;" disabled><b>Submit</b></button>
+		</div>
+		
+		<script src="softmatch.js"></script>
+	</body>
+</html>
