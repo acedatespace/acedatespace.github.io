@@ -1358,6 +1358,6 @@ $(".profile input").on("click", function(e){
 var dropdownSelect = $("#discordID").children("option:selected").val();
 
 
-  if (dropdownSelect == "noneSelected") {
+ /* if (dropdownSelect == "noneSelected") {
     alert("please select your username from the dropdown");
-  } 
+  } */
