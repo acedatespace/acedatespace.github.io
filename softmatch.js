@@ -1293,7 +1293,7 @@ for (var i = 0; i < candidates.length; i++) {
   var pronouns = candidates[i].pronouns;
   var country = candidates[i].country;
   var region = candidates[i].regionOrNearestCity;
-  var orientation = candidates[i].romanticOrientationSelectAllThatApply;
+  var orientations = candidates[i].romanticOrientationSelectAllThatApply;
   var seeking = candidates[i].whatAreYouLookingForSelectAllThatApply;
   var words = candidates[i].describeYourselfIn3Words;
   var profile = document.createElement('div');
@@ -1306,7 +1306,7 @@ for (var i = 0; i < candidates.length; i++) {
     '<span class="name"><b>Age: </b>' + age + '</span>' +
     '<span class="name"><b>Pronouns: </b>' + pronouns + '</span>' +
     '<span class="name"><b>Location: </b>' + country + ', ' + region + '</span>' +
-    '<span class="name"><b>Orientation: </b>' + orientation + '</span>' +
+    '<span class="name"><b>Orientation: </b>' + orientations + '</span>' +
     '<span class="name"><b>Looking for: </b>' + seeking + '</span>' +
     '<span class="name"><b>3 Words: </b>' + words + '</span>' +
     '<br><div class="checkbox">I&#39;m interested <input type="checkbox" name="form_field_' + ID + '" value="' + name + '"></div>' +
