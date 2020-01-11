@@ -325,7 +325,7 @@ var candidates = [
     },
     {
         "timestamp": "2020-01-03T20:04:10.827Z",
-        "discordId": "Vialuna #8230",
+        "discordId": "Vialuna#8230",
         "age": 36,
         "pronouns": "she/her",
         "country": "USA",
@@ -333,17 +333,6 @@ var candidates = [
         "romanticOrientationSelectAllThatApply": "demiromantic, cupioromantic",
         "whatAreYouLookingForSelectAllThatApply": "Romance, QPR",
         "describeYourselfIn3Words": "Intelligent, Patient, Demure"
-    },
-    {
-        "timestamp": "2020-01-03T20:04:54.847Z",
-        "discordId": "Orbfluid#0152",
-        "age": "23 (Almost 24 in 1 month!)",
-        "pronouns": "He/They is fine, but I prefer none.",
-        "country": "The Netherlands",
-        "regionOrNearestCity": "Noord-Holland, Enkhuizen",
-        "romanticOrientationSelectAllThatApply": "panromantic, aroflux, demiromantic, alterous, cupioromantic",
-        "whatAreYouLookingForSelectAllThatApply": "QPR, Friendship, I'm not really looking for romance, but it could happen.",
-        "describeYourselfIn3Words": "Odd, distant, humouristic"
     },
     {
         "timestamp": "2020-01-03T20:05:23.401Z",
@@ -413,7 +402,7 @@ var candidates = [
     },
     {
         "timestamp": "2020-01-03T20:10:01.917Z",
-        "discordId": "sunnyshowers#4444",
+        "discordId": "sunnyshowers#3247",
         "age": 20,
         "pronouns": "They/Them",
         "country": "United States",
@@ -424,7 +413,7 @@ var candidates = [
     },
     {
         "timestamp": "2020-01-03T20:11:00.741Z",
-        "discordId": "Trashboat #0462",
+        "discordId": "Trashboat#0462",
         "age": "25 (26 on jan 14)",
         "pronouns": "he/him",
         "country": "USA",
@@ -457,7 +446,7 @@ var candidates = [
     },
     {
         "timestamp": "2020-01-03T20:17:45.103Z",
-        "discordId": "Trashsan #0389",
+        "discordId": "Trashsan#0389",
         "age": 23,
         "pronouns": "He/Him",
         "country": "Feroe Islands ",
@@ -567,7 +556,7 @@ var candidates = [
     },
     {
         "timestamp": "2020-01-03T21:08:16.127Z",
-        "discordId": "SamLock #0970",
+        "discordId": "SamLock#0970",
         "age": 25,
         "pronouns": "They/Them",
         "country": "US",
@@ -699,7 +688,7 @@ var candidates = [
     },
     {
         "timestamp": "2020-01-03T23:18:59.086Z",
-        "discordId": "Joe#7458",
+        "discordId": "ACJ#7458 (Joe)",
         "age": 25,
         "pronouns": "Cisgender male",
         "country": "England",
@@ -897,7 +886,7 @@ var candidates = [
     },
     {
         "timestamp": "2020-01-04T13:40:17.975Z",
-        "discordId": "Your Majesty #6437",
+        "discordId": "Your Majesty#6437",
         "age": 21,
         "pronouns": "She/Her",
         "country": "Australia",
@@ -1084,7 +1073,7 @@ var candidates = [
     },
     {
         "timestamp": "2020-01-06T12:19:47.751Z",
-        "discordId": "Jemac",
+        "discordId": "Jemac#2534",
         "age": 27,
         "pronouns": "She/her",
         "country": "United States",
@@ -1149,17 +1138,6 @@ var candidates = [
         "describeYourselfIn3Words": "Kind, Smart, Eccentric"
     },
     {
-        "timestamp": "2020-01-08T14:36:47.971Z",
-        "discordId": "f(t)#7017",
-        "age": 23,
-        "pronouns": "he/they",
-        "country": "UK",
-        "regionOrNearestCity": "~south",
-        "romanticOrientationSelectAllThatApply": "heteromantic, aromantic, demiromantic, greyromantic, quoiromantic",
-        "whatAreYouLookingForSelectAllThatApply": "QPR, Friendship",
-        "describeYourselfIn3Words": "nerd, shy, uwu"
-    },
-    {
         "timestamp": "2020-01-08T23:10:09.840Z",
         "discordId": "Jan-Sen (Pitch Black)#1453",
         "age": 19,
@@ -1172,7 +1150,7 @@ var candidates = [
     },
     {
         "timestamp": "2020-01-08T23:10:42.159Z",
-        "discordId": "NickTWriter #8566",
+        "discordId": "NickTWriter#8566",
         "age": "29 (30 on the 11th)",
         "pronouns": "He/Him",
         "country": "US",
