@@ -703,7 +703,7 @@ var candidates = [
         "age": 28,
         "pronouns": "She/her",
         "country": "Canada",
-        "regionOrNearestCity": "Kootenays (please don't share /o\\)",
+        "regionOrNearestCity": "",
         "romanticOrientationSelectAllThatApply": "heteromantic, biromantic, polyromantic",
         "whatAreYouLookingForSelectAllThatApply": "Romance, Friendship",
         "describeYourselfIn3Words": "Multifarious, intense, focused-mania"
